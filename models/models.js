@@ -34,12 +34,13 @@ exports.Quiz = Quiz;
 sequelize.sync().success(function(){
 	Quiz.count().success(function(count){
 
-		if(count === 0){
-			Quiz.create({
-				pregunta: '¿Capital de Italia?',
-				respuesta: 'Roma'
-			}).success(function(){ console.log("Base de datos inicializada") });
-		}
+		if(count === 0) {
+			Quiz.bulkCreate(
+				[ {pregunta: 'Capital de Italia',   respuesta: 'Roma'},
+					{pregunta: 'Capital de Portugal', respuesta: 'Lisboa'}
+				]
+			).then(function(){console.log('Base de datos inicializada')});
+		};
 
 	});
 });
