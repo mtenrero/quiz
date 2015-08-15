@@ -1,3 +1,9 @@
+<form method="get" action="/quizes">
+    Buscador de preguntas:
+    <input type="text" name="search" value="<%= search %>" />
+    <input type="submit" value="Buscar" />
+</form>
+
 <table>
     <% var i; for (i=0; i < quizes.length; i++) { %>
     <tr>
