@@ -28,16 +28,28 @@ var sequelize = new Sequelize(DB_name, user, pwd, {
 
 // Cargar Modelo ORM
 var Quiz = sequelize.import(path.join(__dirname, 'quiz'));
+
+// Importar definicion de la tabla Comment
+var comment_path = path.join(__dirname,'comment');
+var Comment = sequelize.import(comment_path);
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
+exports.Quiz = Quiz; // exportar tabla Quiz
+exports.Comment = Comment;
+
 exports.Quiz = Quiz;
+exports.Comment = Comment;
 
 
-sequelize.sync().success(function(){
-	Quiz.count().success(function(count){
+sequelize.sync().then(function(){
+	Quiz.count().then(function(count){
 
 		if(count === 0) {
 			Quiz.bulkCreate(
-				[ {pregunta: 'Capital de Italia',   respuesta: 'Roma'},
-					{pregunta: 'Capital de Portugal', respuesta: 'Lisboa'}
+				[ {pregunta: 'Capital de Italia',	respuesta: 'Roma',	tema: 'humanidades'},
+					{pregunta: 'Capital de Portugal', respuesta: 'Lisboa',	tema: 'humanidades'}
 				]
 			).then(function(){console.log('Base de datos inicializada')});
 		};

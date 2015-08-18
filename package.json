@@ -16,10 +16,12 @@
     "ejs": "~2.3.2",
     "express": "~4.13.0",
     "express-partials": "^0.3.0",
+    "express-session": "^1.11.3",
+    "method-override": "^2.3.1",
     "morgan": "~1.6.1",
     "pg": "^4.1.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^1.7.0",
+    "sequelize": "^2.0.0",
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
